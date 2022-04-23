@@ -134,17 +134,35 @@ public:
 
 int main()
 {
+    Human humans[] = {
+        Human ("Hikmet", "Suicmez", 21),
+        Human ("Hakan", "Aktas", 22, 1),
+        Human ("Ahmet", "Yavuz", 69),
+        Human ("Faruk", "Doner", 79, 1),
+        Human ("Ayse", "Sonmez", 49, 1),
+        Human ("Ugurcan", "Cakir", 65)
+    };
 
-    Human human("hikmet", "suicmez", 21);
-    Human human2("hakan", "aktas", 22, 1);
     patientRegistration banko;
-    banko.add(human);
-    banko.add(human2);
+    banko.add(humans[0]);
+    banko.add(humans[1]);
+    banko.add(humans[3]);
+    banko.add(humans[2]);
+    banko.add(humans[4]);
+    banko.add(humans[5]);
     banko.registrationOrderPrint();
     cout << endl;
     banko.inspectionOrderPrint();
     banko.callPatient();
     banko.callPatient();
     banko.callPatient();
+    banko.callPatient();
+    banko.callPatient();
+    banko.callPatient();
+    banko.callPatient();
+    banko.registrationOrderPrint();
+    cout << endl;
+    banko.inspectionOrderPrint();
+
     return 0;
 }
