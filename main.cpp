@@ -5,7 +5,7 @@ using namespace std;
 
 class Human
 {
-private:
+protected:
     string firstName;
     string lastName;
     int age;
@@ -27,10 +27,11 @@ public:
     }
 };
 
+
 int main()
 {
     Human human("hikmet", "suicmez", 21);
-    Human human2("hakan","aktas",22,1);
+    Human human2("hakan", "aktas", 22, 1);
     human.print();
     human2.print();
     return 0;
