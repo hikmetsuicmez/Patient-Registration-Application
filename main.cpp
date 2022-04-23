@@ -63,16 +63,88 @@ public:
         cout << "Priority Score : " << priorityScore << endl;
     }
 };
+
+class patientRegistration
+{
+    list<Patient> registrationOrder;
+    priority_queue<Patient> inspectionOrder;
+
+public:
+    void add(Human &h)
+    {
+        Patient patient(registrationOrder.size() + 1, h);
+        registrationOrder.push_back(patient);
+        inspectionOrder.push(patient);
+    }
+
+    void registrationOrderPrint()
+    {
+        cout << " ### Patient Registration Order ###" << endl;
+        if (registrationOrder.empty())
+            cout << "No registered patients." << endl;
+        else
+        {
+            list<Patient>::iterator iter = registrationOrder.begin();
+            while (iter != registrationOrder.end())
+            {
+                Patient patient = *iter;
+                patient.print();
+                iter++;
+                if (iter != registrationOrder.end())
+                    cout << endl;
+            }
+        }
+        cout << " ### End of Patient Registration Order ###" << endl;
+    }
+
+    void inspectionOrderPrint()
+    {
+        cout << " ### Inspection Order ###" << endl;
+        if (inspectionOrder.empty())
+            cout << "No patients waiting for examination." << endl;
+        else
+        {
+            priority_queue<Patient> queue = inspectionOrder;
+            while (!queue.empty())
+            {
+                Patient patient = queue.top();
+                patient.print();
+                queue.pop();
+                if (!queue.empty())
+                    cout << endl;
+            }
+        }
+        cout << " ### End of Inspection Order ###" << endl;
+    }
+
+    void callPatient()
+    {
+        if (inspectionOrder.empty())
+            cout << "No patients waiting for examination queue." << endl;
+        else
+        {
+            cout << "-- Patient information called for examination.-- " << endl;
+            Patient patient = inspectionOrder.top();
+            patient.print();
+            inspectionOrder.pop();
+        }
+        cout << endl;
+    }
+};
+
 int main()
 {
 
     Human human("hikmet", "suicmez", 21);
     Human human2("hakan", "aktas", 22, 1);
-    // human.print();
-    // human2.print();
-
-    Patient p(1, human);
-    p.print();
-
+    patientRegistration banko;
+    banko.add(human);
+    banko.add(human2);
+    banko.registrationOrderPrint();
+    cout << endl;
+    banko.inspectionOrderPrint();
+    banko.callPatient();
+    banko.callPatient();
+    banko.callPatient();
     return 0;
 }
